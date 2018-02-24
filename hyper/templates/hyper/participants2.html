@@ -1,0 +1,147 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <title>{% block title %}{% endblock %}</title>
+
+		<!-- Bootstrap core CSS -->
+
+	  <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  </head>
+  <body style="font-family:'Raleway', sans-serif">
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">KODHI</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="#">Welcome, Timo</a></li>
+            <li><a href="#">Logout</a></li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h3><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Assets</h3>
+          </div>
+          <div class="col-md-2"> 
+            <!-- {% block add_button %}{% endblock add_button %} -->
+
+            <div class="dropdown create">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Add {{ section_name }}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a type="button" data-toggle="modal" data-target="#addPage">Add #</a></li>
+                        <li><a type="button" data-toggle="modal" data-target="#">Import File</a></li>
+                    </ul>
+                </div>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+             <div class="list-group">
+              <a href="" class="list-group-item"></span> Dashboard</a>
+              <a href="{% url 'hyper:add_item' %}" class="list-group-item active main-color-bg">Assets </a>
+              <a href="{% url 'hyper:add_person' %} " class="list-group-item"> Add Person</a>
+              <a href="{% url 'hyper:submit_transaction' %} " class="list-group-item "> Payments</a>
+              <a href="{% url 'hyper:make_trade' %} " class="list-group-item">Trades</a>
+              <a href="{% url 'hyper:add_person' %} " class="list-group-item"> Participants</a>
+            </div>
+            <div class="well"></div>
+          </div>
+
+          <div class="col-md-9">
+            <!-- Website Overview -->
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg">
+                <h3 class="panel-title">{{ section_name }} </h3>
+              </div>
+              <div class="panel-body">
+                <!-- {% block content %}{% endblock %} -->
+
+                <br>
+                <table class="table table-striped table-hover">
+                    <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Balance</th>
+                    <th>Contact</th>
+                    <th></th>
+                        {% for person in persons %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ person.firstName|add:' '|add:person.lastName }}</td>
+                                <td>{{ person.balance }}</td>
+                                <td>+256772300410</td>
+                                <td><a class="btn btn-default" href="">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+                            </tr>
+                        {% endfor %}
+                </table>
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Modals -->
+
+    <!-- Add Page -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add {{ section_name }} Form</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- {% block add_form %}{% endblock add_form %} -->
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+                CKEDITOR.replace( 'editor1' );
+        </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  </body>
+</html>

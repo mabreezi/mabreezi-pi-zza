@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block add_button %}
+    <div class="dropdown create">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add {{ section_name }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a type="button" data-toggle="modal" data-target="#addPage">Add #</a></li>
+            <li><a type="button" data-toggle="modal" data-target="#">Import File</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% block main %}{% endblock main %}
+
+    <!-- Add Page -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add {{ section_name }} Form</h4>
+                </div>
+                <div class="modal-body">
+                    {% block add_form %}{% endblock add_form %}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock content %}
+
+
+
