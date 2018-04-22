@@ -1,17 +1,55 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-{% block title %}Make A Trade{% endblock %}
+{% block title %}Make A Transfer{% endblock %}
 
 {% block section_title %} {{ section_name }} {% endblock %}
 
 {% block content %}
-<div>
+{% block top %}
+<div class="box-header">
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+		<i class="fa fa-plus"></i> Make Item Transfer
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-bookmark-o"></i> Item Transfer Report
+	</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="">
+		<i style="color:red"class="fa fa-file-pdf-o"></i> Generate PDF
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-line-chart"></i> Graphical Summary
+	</button>
+	  
 </div>
+{% endblock top %}
+
+<div class="box-body">
+		<table id="example1" class="table table-bordered table-striped">
+		<tr>
+		<th>#</th>
+		<th>TransactionID</th>
+		<th>Item</th>
+		<th>New Owner</th>
+		<th></th>
+			{% for transfer in transfers %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ transfer.transcationId }}</td>
+					<td>{{ transfer.item }}</td>
+					<td> {{ transfer.newOwner }}</td>
+					<td><a class="btn btn-default" href="">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+				</tr>
+			{% endfor %}
+	</table>
+	
+</div>
+
+{% endblock %}
+
 <div>
-	<form acition="." method=post>
+	{% block form %}<form action="{% url 'hyper:make_trade' %}" method=post >{% endblock form %}
+		{% block add_form %}
 		{{form.as_p}}
 		{% csrf_token %}
-		<p><button>Submit</button></p>
-	</form>
-</div>
-{% endblock %}
+	{% endblock add_form %}
+

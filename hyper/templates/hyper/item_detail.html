@@ -1,0 +1,15 @@
+{% extends "base2.html" %}
+
+{% block title %}Item Detail{% endblock %}
+
+{% block section_title %} {{ section_name }} {% endblock %}
+
+{% block content %}
+
+<div>
+    <h2>{{ item.name }}</h2>
+    <p> {{ item.description }}</p>
+    <img src = "{{ item.qrcode.url }}" />
+</div>
+
+{% endblock %}

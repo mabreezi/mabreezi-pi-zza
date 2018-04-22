@@ -1,0 +1,16 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}Demographic Report{% endblock title %}
+
+{% block content %}
+            <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <div id="age-makeup" class="graph" style="width:40%;display:inline-block"></div>
+    <div id="recipient-makeup" class="graph" style="width:40%;display:inline-block"></div>
+    <div id="cash-by-zone" class="graph"></div>
+    <div></div>
+
+    <script src="{% static "reports/demographic.js" %}"></script>
+
+{% endblock content %}

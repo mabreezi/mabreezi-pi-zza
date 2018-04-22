@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block add_button %}
+    <div class="dropdown create">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add {{ section_name }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a type="button" data-toggle="modal" data-target="#addPage">Add #</a></li>
+            <li><a type="button" data-toggle="modal" data-target="#">Import File</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% block main %}{% endblock main %}
+
+    <!-- Add Page -->
+ 
+
+
+{% endblock content %}
+
+
+

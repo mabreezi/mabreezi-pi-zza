@@ -10,7 +10,8 @@ urlpatterns = [
     url(r'^add-partner-user$', views.add_partner_user, name='add_partner_user'),
     url(r'^activate-account/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', 
     views.activate_account, name='activate_account'),
-    # url(r'^add-trucker', views.add_trucker, name='add_trucker'),
-    url(r'^return/$', views.receive_cookies, name='receive_cookies'),
+    url(r'^add-trucker', views.add_trucker, name='add_trucker'),
+    url(r'^kodhi-login/', views.kodhi_login, name='kodhi_login'),
+    url(r'^enter-token/$', views.enter_token, name='enter_token'),
     url('^', include('django.contrib.auth.urls')),
 ]

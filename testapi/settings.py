@@ -20,25 +20,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0yz(&+5y_5tcx3erh)ll-=f=tjh_7qfa*(+^0=8fg8n1!ro$1v'
+SECRET_KEY ='vcgvj4wja%$0)2@)x_z8(!*z$it7f60t=4z4@d8be7=qfku=14'
 
 HYPER_SERVER = os.environ['HYPER_SERVER']
 
-# HYPER_SERVER2 = os.environ['HYPER_SERVER2']
+BLOCKCHAIN_URL = 'hyper.brianmusisi.com'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hyper.brianmusisi.com', 'localhost','52.226.129.193','app.brianmusisi.com']
 
 # Email backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'bpmusisi@gmail.com'
-# EMAIL_HOST_PASSWORD = 'fantabalistic'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bpmusisi@gmail.com'
+EMAIL_HOST_PASSWORD = '3mb3d123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'hyper',
     'account',
     'location',
+    'analytics',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# SESSION_ENGINE = ['django.contrib.sessions.backends.signed_cookies']
 
 ROOT_URLCONF = 'testapi.urls'
 
@@ -136,3 +139,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

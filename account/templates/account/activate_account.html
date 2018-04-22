@@ -1,4 +1,4 @@
 Someone created you on Kodhi with the email {{ email }}. Follow the
    link below to create a password:
-   {{ protocol }}://{{ domain }}{% url "activate_account" uidb64=uid token=token %}
+   {{ protocol }}://{{ domain }}{% url "account:enter_token"%}
    Your username, in case you've forgotten: {{ user.get_username }}

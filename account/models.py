@@ -33,21 +33,21 @@ class Refugee(models.Model):
   age = models.IntegerField()
   zone = models.IntegerField()
   village = models.IntegerField()
-  alternate = models.CharField(max_length=20, blank=True, default=True)
+  alternate = models.CharField(max_length=20, blank=True, default='')
 
 
 class Merchant(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   phone_number = models.CharField(max_length=11)
   age = models.IntegerField()
-  zone = models.IntegerField(blank=True)
-  village = models.IntegerField(blank=True)
-  account_number = models.IntegerField(blank=True)
+  zone = models.IntegerField()
+  village = models.IntegerField()
+  account_number = models.IntegerField()
 
 class PartnerUser(models.Model):
   user= models.OneToOneField(User, on_delete=models.CASCADE)
   phone_number = models.CharField(max_length=11)
-  age = models.IntegerField()
+  # age = models.IntegerField()
   organization = models.CharField(max_length=20)
 
 class Trucker(models.Model):

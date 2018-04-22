@@ -1,0 +1,51 @@
+{% extends "base2.html" %}
+
+{% block title %}Create a Shipment{% endblock %}
+
+{% block section_title %} {{ section_name }} {% endblock %}
+
+{% block content %}
+
+{% block top %}
+<div class="box-header">
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+		<i class="fa fa-plus"></i> Add Shipment
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-bookmark-o"></i> Shipment Report
+	</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="">
+		<i style="color:red"class="fa fa-file-pdf-o"></i> Generate PDF
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-line-chart"></i> Graphical Summary
+	</button>
+	  
+</div>
+{% endblock top %}
+
+<div class="box-body">
+		<table id="example1" class="table table-bordered table-striped">
+		<tr>
+		<th>ID</th>
+		<th>Location</th>
+		<th>Destination</th>
+		<th></th>
+			{% for shipment in shipments %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ shipment.location }}</td>
+					<td>{{ shipment.destination }}</td>
+					<td><a class="btn btn-default" href="">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+				</tr>
+			{% endfor %}
+	</table>
+
+{% endblock %}
+
+
+{% block form %}<form action="{% url 'hyper:add_shipment' %}" method=post >{% endblock form %}
+{% block add_form %}
+	{{form.as_p}}
+	{% csrf_token %}
+{% endblock add_form %}

@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+
+    <!--Graphs -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
   </head>
   <body style="font-family:'Raleway', sans-serif">
 
@@ -54,12 +58,12 @@
         <div class="row">
           <div class="col-md-3">
              <div class="list-group">
-              <a href="" class="list-group-item"></span> Dashboard</a>
+              <a href="{% url 'hyper:dashboard' %}" class="list-group-item"></span> Dashboard</a>
               <a href="{% url 'hyper:add_item' %}" class="list-group-item active main-color-bg">Assets </a>
-              <a href="{% url 'hyper:add_person' %} " class="list-group-item"> Add Person</a>
+              <a href="{% url 'account:add_users' %}" class="list-group-item">User Management</a>
               <a href="{% url 'hyper:submit_transaction' %} " class="list-group-item "> Payments</a>
               <a href="{% url 'hyper:make_trade' %} " class="list-group-item">Trades</a>
-              <a href="{% url 'hyper:add_person' %} " class="list-group-item"> Participants</a>
+              <a href="{% url 'account:create_user' %}" class="list-group-item">Add User</a>
             </div>
             <div class="well"></div>
           </div>
@@ -81,6 +85,28 @@
 
 
         <!-- Modals -->
+
+
+    <!-- Add Page -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  {% block form %}{% endblock form %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add {{ section_name }} Form</h4>
+                </div>
+                <div class="modal-body">
+                    {% block add_form %}{% endblock add_form %}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
 
 
 

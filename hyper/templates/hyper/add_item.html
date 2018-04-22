@@ -1,18 +1,57 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
 {% block title %}Add an Item{% endblock %}
 
 {% block section_title %} {{ section_name }} {% endblock %}
 
 {% block content %}
-<div>
+
+{% block top %}
+<div class="box-header">
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+		<i class="fa fa-plus"></i> Add Asset
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-bookmark-o"></i> Asset Report
+	</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="">
+		<i style="color:red"class="fa fa-file-pdf-o"></i> Generate PDF
+	</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+		<i class="fa fa-line-chart"></i> Graphical Summary
+	</button>
+	  
 </div>
-<div>
-	<form action="." method=post>
-		{{form.as_p}}
-		{% csrf_token %}
-		<button type="submit" class="btn btn-default">Submit</button>
-		<button type="reset" class="btn btn-default">Cancel</button>
-	</form>
+
+<div class="box-body">
+		<table id="example1" class="table table-bordered table-striped">
+		<tr>
+		<th>ID</th>
+		<th>Item</th>
+		<th>Description</th>
+		<th>Quantity</th>
+		<th>Owner</th>
+		<th></th>
+			{% for item in items %}
+				<tr>
+					<td>{{ item.itemId }}</td>
+					<td>{{ item.itemName }}</td>
+					<td>{{ item.description }}</td>
+					<td>{{ item.quantity }} </td>
+					<td>{{ item.owner }} </td>
+					<td><a class="btn btn-default" href="">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+				</tr>
+			{% endfor %}
+	</table>
+	
 </div>
+{% endblock top %}
+
 {% endblock %}
+
+{% block form %}<form action="{% url 'hyper:add_item' %}" method=post >{% endblock form %}
+{% block add_form %}
+	{{form.as_p}}
+	{% csrf_token %}
+{% endblock add_form %}
+

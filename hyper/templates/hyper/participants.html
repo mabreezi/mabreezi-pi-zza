@@ -42,10 +42,12 @@
 
 <!-- Form used in the Modal -->
 
-{% block add_form %}
-    {{ form.as_p }}
-    {% csrf_token %}
-{% endblock add_form %}
+
+    {% block add_form %}
+        {{ form.as_p }}
+        {% csrf_token %}
+    {% endblock add_form %}
+    
 
 
 

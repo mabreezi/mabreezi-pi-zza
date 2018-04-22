@@ -17,8 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^hyper/', include('hyper.urls', namespace='hyper')),
-    url(r'^account/', include('account.urls', namespace='account')),
-    url(r'^location/', include('location.urls', namespace='location'))
-]
+    url(r'app/^admin/', admin.site.urls),
+    url(r'^app/', include('hyper.urls', namespace='hyper')),
+    url(r'^app/account/', include('account.urls', namespace='account')),
+    url(r'^app/location/', include('location.urls', namespace='location')),
+    url(r'^app/analytics/', include('analytics.urls', namespace='analytics'))
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
